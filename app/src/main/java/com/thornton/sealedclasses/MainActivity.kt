@@ -5,6 +5,8 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
+import com.thornton.sealedclasses.Pet.*
+import com.thornton.sealedclasses.models.Food
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -18,6 +20,14 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
+        }
+        feedPets(FiFi())
+
+    }
+
+    private fun feedPets(pet: Pet){
+        when(pet){
+            is FiFi -> println("Feed FiFi")
         }
     }
 
