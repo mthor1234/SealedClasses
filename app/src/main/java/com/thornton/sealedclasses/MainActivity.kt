@@ -28,7 +28,10 @@ class MainActivity : AppCompatActivity() {
     private fun feedPets(pet: Pet){
         when(pet){
             is FiFi -> println("Feed FiFi")
-        }
+            is Bella -> println("Feed Bella")
+            is Lucy -> println("Feed Lucy")
+            is Max -> println("Feed Max")
+        }.exhaustive
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
