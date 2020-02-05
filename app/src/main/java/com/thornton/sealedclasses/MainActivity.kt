@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
 import com.thornton.sealedclasses.Pet.*
+import com.thornton.sealedclasses.events.ApiResult
 import com.thornton.sealedclasses.models.Food
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -21,18 +22,42 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
-        feedPets(FiFi())
 
+        feedPets(FiFi())
+        makeAPICall(ApiResult.Failure(Throwable("Error")))
     }
 
+
+
+    // Feeding pets example w/ .exhaustive extension function
     private fun feedPets(pet: Pet){
         when(pet){
             is FiFi -> println("Feed FiFi")
             is Bella -> println("Feed Bella")
             is Lucy -> println("Feed Lucy")
             is Max -> println("Feed Max")
-        }.exhaustive
+        }//.exhaustive
     }
+
+
+    // Go over API Setup & Error handling Show Exhaustive Error
+    // Show Exhaustive Error
+    private fun makeAPICall(result: ApiResult){
+        // Right click Show Exhaustive Error
+        //1. val response = when (result) {
+        when (result) {
+            is ApiResult.Success -> println(result.items)
+            is ApiResult.Failure -> result.error.printStackTrace()
+        //2.is ApiResult.Cancelled -> doStuff()
+        }
+    }
+
+
+    fun doStuff(){}
+
+
+
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
