@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import com.thornton.sealedclasses.Pet.*
 import com.thornton.sealedclasses.events.ApiResult
+import com.thornton.sealedclasses.filtering.Car
 import com.thornton.sealedclasses.models.Food
 
 import kotlinx.android.synthetic.main.activity_main.*
@@ -28,10 +29,9 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-    // Feeding pets example w/ .exhaustive extension function
-    private fun feedPets(pet: Pet){
-        when(pet){
+    //1. Feeding pets example w/ .exhaustive extension function
+    private fun feedPets(pet: Pet) {
+        when (pet) {
             is FiFi -> println("Feed FiFi")
             is Bella -> println("Feed Bella")
             is Lucy -> println("Feed Lucy")
@@ -40,23 +40,63 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-    // Go over API Setup & Error handling Show Exhaustive Error
+    // 2. Go over API Setup & Error handling Show Exhaustive Error
     // Show Exhaustive Error
-    private fun makeAPICall(result: ApiResult){
+    // Show Auto-create branches
+    private fun makeAPICall(result: ApiResult) {
         // Right click Show Exhaustive Error
         //1. val response = when (result) {
         when (result) {
             is ApiResult.Success -> println(result.items)
             is ApiResult.Failure -> result.error.printStackTrace()
-        //2.is ApiResult.Cancelled -> doStuff()
+            //2.is ApiResult.Cancelled -> doStuff()
         }
     }
 
+    // Just showing that you can call methods
+    fun doStuff() {
+        println("Do Stuff!")
+    }
 
-    fun doStuff(){}
 
+    // 3. Show filtering
+    //      1. First Create the Standard List
+    //      2. Then Uncomment the rest of the stuff.. Leave Car.Ford() for a while
+    //      3. Fix Car.kt
+    //      4. Comment out Car.Ford()
+    private fun filteringCars(car: Car) {
 
+        // Show writing this out
+        val carList: Sequence<Car> = listOf(
+//            Car.Ford(),
+            Car.Toyota(),
+            Car.Honda(),
+            Car.BMW(),
+            Car.Ferrari(),
+            Car.Tesla()
+        ).asSequence()
 
+//        when (car) {
+//            is Car.Ford -> println("Found On Road Dead")
+//            is Car.Toyota -> println("They never die!")
+//            is Car.Honda -> println("They never die!")
+//            is Car.BMW -> println("Expensive repairs")
+//            is Car.Ferrari -> println("Need more money")
+//            is Car.Tesla -> println("Respect")
+//        }.exhaustive
+//
+//        val filteredList = carList.filterIsInstance<Car.Ford>()
+//
+//        filteredList.forEach {
+//            val ford = when(it){
+//                is Car.Ford -> sellIt()
+//            }
+//        }
+    }
+//
+//    fun sellIt(){
+//        println("Sell IT!!!")
+//    }
 
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
