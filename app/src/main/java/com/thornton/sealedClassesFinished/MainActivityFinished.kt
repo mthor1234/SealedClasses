@@ -5,11 +5,9 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
-import com.thornton.sealedclasses.Pet
-import com.thornton.sealedclasses.Pet.*
+import com.thornton.sealedClassesFinished.events.ApiResultFinished
+import com.thornton.sealedClassesFinished.filtering.CarFinished
 import com.thornton.sealedclasses.R
-import com.thornton.sealedclasses.events.ApiResult
-import com.thornton.sealedclasses.filtering.Car
 
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -25,18 +23,18 @@ class MainActivityFinished : AppCompatActivity() {
                 .setAction("Action", null).show()
         }
 
-        feedPets(FiFi())
-        makeAPICall(ApiResult.Failure(Throwable("Error")))
+        feedPets(PetFinished.FiFi())
+        makeAPICall(ApiResultFinished.Failure(Throwable("Error")))
     }
 
 
     //1. Feeding pets example w/ .exhaustive extension function
-    private fun feedPets(pet: Pet) {
+    private fun feedPets(pet: PetFinished) {
         when (pet) {
-            is FiFi -> println("Feed FiFi")
-            is Bella -> println("Feed Bella")
-            is Lucy -> println("Feed Lucy")
-            is Max -> println("Feed Max")
+            is PetFinished.FiFi -> println("Feed FiFi")
+            is PetFinished.Bella -> println("Feed Bella")
+            is PetFinished.Lucy -> println("Feed Lucy")
+            is PetFinished.Max -> println("Feed Max")
         }//.exhaustive
     }
 
@@ -44,12 +42,12 @@ class MainActivityFinished : AppCompatActivity() {
     // 2. Go over API Setup & Error handling Show Exhaustive Error
     // Show Exhaustive Error
     // Show Auto-create branches
-    private fun makeAPICall(result: ApiResult) {
+    private fun makeAPICall(result: ApiResultFinished) {
         // Right click Show Exhaustive Error
         //1. val response = when (result) {
         when (result) {
-            is ApiResult.Success -> println(result.items)
-            is ApiResult.Failure -> result.error.printStackTrace()
+            is ApiResultFinished.Success -> println(result.items)
+            is ApiResultFinished.Failure -> result.error.printStackTrace()
             //2.is ApiResult.Cancelled -> doStuff()
         }
     }
@@ -65,16 +63,16 @@ class MainActivityFinished : AppCompatActivity() {
     //      2. Then Uncomment the rest of the stuff.. Leave Car.Ford() for a while
     //      3. Fix Car.kt
     //      4. Comment out Car.Ford()
-    private fun filteringCars(car: Car) {
+    private fun filteringCars(car: CarFinished) {
 
         // Show writing this out
-        val carList: Sequence<Car> = listOf(
+        val carList: Sequence<CarFinished> = listOf(
 //            Car.Ford(),
-            Car.Toyota(),
-            Car.Honda(),
-            Car.BMW(),
-            Car.Ferrari(),
-            Car.Tesla()
+            CarFinished.Toyota(),
+            CarFinished.Honda(),
+            CarFinished.BMW(),
+            CarFinished.Ferrari(),
+            CarFinished.Tesla()
         ).asSequence()
 
 //        when (car) {

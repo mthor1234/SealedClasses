@@ -5,10 +5,6 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity;
 import android.view.Menu
 import android.view.MenuItem
-import com.thornton.sealedclasses.Pet.*
-import com.thornton.sealedclasses.events.ApiResult
-import com.thornton.sealedclasses.filtering.Car
-import com.thornton.sealedclasses.models.Food
 
 import kotlinx.android.synthetic.main.activity_main.*
 
