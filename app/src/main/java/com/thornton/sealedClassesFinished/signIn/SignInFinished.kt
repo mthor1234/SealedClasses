@@ -6,7 +6,7 @@
  */
 
 
-package com.thornton.sealedclasses.signIn
+package com.thornton.sealedClassesFinished.signIn
 
 
 
@@ -18,6 +18,9 @@ package com.thornton.sealedclasses.signIn
     // Note Nesting can make things more verbose / grow too big
     // Kind of up to the team
     // Can't have naming conflicts
+// "Why do we spend all this time of setting up state classes?
+    // Compartmentalize the unknown... Focus on the problem we're trying to solve by leveraging Kotlin's Type System
+    // Moves the work to the compiler... So we can focus on the most impactful things like adding features for users"
 
 sealed class SocialSignInResult {
     data class Success(val token: String) : SocialSignInResult()

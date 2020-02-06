@@ -6,24 +6,24 @@
  */
 
 
-package com.thornton.sealedclasses.filtering
+package com.thornton.sealedClassesFinished.filtering
 
 
-sealed class Car {
+sealed class CarFinished() {
 
     companion object {
         //TODO: Set Keyword TAG
         private const val TAG = "Plant"
     }
 
-    class BMW: Car()
-    class Ferrari: Car()
-    class Tesla: Car()
-    class Honda: Car()
-    class Toyota: Car()
+    class BMW: CarFinished()
+    class Ferrari: CarFinished()
+    class Tesla: CarFinished()
+    class Honda: CarFinished()
+    class Toyota: CarFinished()
 
 
-    sealed class Ford: Car() {
+    sealed class Ford: CarFinished() {
         class Mustang: Ford()
         class Fusion: Ford()
         class F150: Ford()

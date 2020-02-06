@@ -1,4 +1,4 @@
-package com.thornton.sealedclasses
+package com.thornton.sealedClassesFinished
 
 /**
  * Created by MJ Thornton
